@@ -1,3 +1,8 @@
+#V6.1
+- Facebook support now works (It can connect and send/recieve messages)
+- Infinite loop on greetings from wit.ai
+- Page chat only so the bot is stuck with single chat
+- Basis for the bot server came from hult's flask-python chatbot
 #V6
 - Removing pygooglevoice
 - Attempting to use flask to create a fb messenger bot
