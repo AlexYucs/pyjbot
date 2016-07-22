@@ -41,11 +41,11 @@ def handle_messages():
     print ("Response type is.... "+resp[u'value'])
     if u'value' in resp:
       if resp[u'value'] == "grocery":
-        resp = client.run_actions('my-user-session-42',textmsg, context0)
+        resp = client.run_actions('my-user-session-42',message, context0)
         print("This resp grocery ")
         print (resp)
         while('foodList' not in resp):
-          resp = client.run_actions('my-user-session-42',textmsg, context0)
+          resp = client.run_actions('my-user-session-42',message, context0)
           print ("This resp ")
           print(resp)
         message = str(resp['foodList'])
