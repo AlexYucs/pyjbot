@@ -1,2 +1,2 @@
-web: gunicorn echoserver:app
+web: gunicorn pyjbot:app
 
