@@ -27,6 +27,7 @@ def handle_verification():
 
 @app.route('/', methods=['POST'])
 def handle_messages():
+  context0 = {}
   print "Handling Messages"
   payload = request.get_data()
   print payload
