@@ -32,6 +32,7 @@ def handle_messages():
   print payload
   for sender, textmsg in messaging_events(payload):
     print "Incoming from %s: %s" % (sender, textmsg)
+    print type(textmsg)
     resp = client.message(textmsg)
     resp = resp[u'entities']
     resp = resp[u'intent']
@@ -57,6 +58,8 @@ def handle_messages():
           resp = client.converse('my-user-session-42',textmsg, context0)
           print ("This resp HERE ")
           print(resp)
+          
+        print("the msg is "+resp['msg'])
         message = str(resp["msg"])
         print("Trying to send...")
         send_message(PAT, sender, message)
