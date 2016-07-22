@@ -30,10 +30,10 @@ def handle_messages():
   print "Handling Messages"
   payload = request.get_data()
   print payload
-  for sender, textmsg in messaging_events(payload):
-    print "Incoming from %s: %s" % (sender, textmsg)
-    print type(textmsg)
-    resp = client.message(textmsg)
+  for sender, message in messaging_events(payload):
+    print "Incoming from %s: %s" % (sender, message)
+    print type(message)
+    resp = client.message(message)
     resp = resp[u'entities']
     resp = resp[u'intent']
     resp = resp[0]
