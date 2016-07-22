@@ -123,4 +123,7 @@ client = Wit(access_token="ZNJWKAFJBJI4UXBMTL2O4YW2RNKOSABS", actions=actions)
 #client.interactive()
 
 
+if __name__ == '__main__':
+  app.run()
+
 
