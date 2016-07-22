@@ -143,6 +143,7 @@ def get_forecast(request):
     return context
 
 def get_cooking(ent, cont):
+    print("Inside grocery")
     print(cont)
     print (ent)
     context = cont
