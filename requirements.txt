@@ -2,6 +2,7 @@ bs4
 pywit
 urllib3
 pygooglevoice
+BeautifulSoup
 cycler==0.10.0
 Flask==0.10.1
 gunicorn==19.6.0
