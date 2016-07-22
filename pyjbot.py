@@ -3,7 +3,6 @@ import json
 import requests
 
 from wit import Wit
-from googlevoice import Voice
 import BeautifulSoup
 import time
 
