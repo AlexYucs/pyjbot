@@ -2,13 +2,17 @@ from flask import Flask, request
 import json
 import requests
 
-app = Flask(__name__)
 from wit import Wit
 from googlevoice import Voice
 import BeautifulSoup
 import time
 
 from bstest6_3 import foodSites
+
+app = Flask()
+
+#FB Token
+Tok = ''
 
 def merge():
     return 0
@@ -64,6 +68,10 @@ actions = {
 
 #server access
 client = Wit(access_token="ZNJWKAFJBJI4UXBMTL2O4YW2RNKOSABS", actions=actions)
+
 #client token
 #client = Wit(access_token="2F5GRMKTGCRTVHIAZO7HXY64LFFSVYWL", actions=actions)
 #client.interactive()
+
+
+
