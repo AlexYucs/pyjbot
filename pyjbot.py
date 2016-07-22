@@ -41,6 +41,7 @@ def handle_messages():
     print ("Response type is.... "+resp[u'value'])
     if u'value' in resp:
       if resp[u'value'] == "grocery":
+        print("THIS GROCERY RIGHT HERE")
         resp = client.run_actions('my-user-session-42',message, context0)
         print("This resp grocery ")
         print (resp)
