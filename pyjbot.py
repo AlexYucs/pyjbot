@@ -46,7 +46,7 @@ def handle_messages():
           resp = client.run_actions('my-user-session-42',textmsg, context0)
           print ("This resp ")
           print(resp)
-          message = str(resp['foodList'])
+        message = str(resp['foodList'])
         send_message(PAT, sender, message)
          
       elif resp[u'value'] == "greetings":
@@ -57,7 +57,7 @@ def handle_messages():
           resp = client.converse('my-user-session-42',textmsg, context0)
           print ("This resp HERE ")
           print(resp)
-          message = str(resp["msg"])
+        message = str(resp["msg"])
         send_message(PAT, sender, message)
       elif resp[u'value'] == "weather":
         #resp = client.run_actions('my-user-session-42',textmsg, context0)
