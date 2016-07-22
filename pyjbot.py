@@ -55,7 +55,7 @@ def handle_messages():
         print (resp)
         while('msg' not in resp):
           resp = client.converse('my-user-session-42',textmsg, context0)
-          print ("This resp ")
+          print ("This resp HERE ")
           print(resp)
           message = str(resp["msg"])
           send_message(PAT, sender, message)
