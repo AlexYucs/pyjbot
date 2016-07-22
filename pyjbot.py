@@ -33,6 +33,44 @@ def handle_messages():
   print payload
   for sender, message in messaging_events(payload):
     print "Incoming from %s: %s" % (sender, message)
+    resp = client.message(message)
+    resp = resp[u'entities']
+    resp = resp[u'intent']
+    resp = resp[0]
+    print ("Response type is.... "+resp[u'value'])
+    if u'value' in resp:
+      if resp[u'value'] == "grocery":
+        resp = client.run_actions('my-user-session-42',textmsg, context0)
+        print("This resp grocery ")
+        print (resp)
+        while('foodList' not in resp):
+          resp = client.run_actions('my-user-session-42',textmsg, context0)
+          print ("This resp ")
+          print(resp)
+                 voice.send_sms(msg[u'from'],str(resp['foodList']))
+         
+      elif resp[u'value'] == "greetings":
+        resp = client.converse('my-user-session-42',textmsg, context0)
+        print("This resp greetings ")
+        print (resp)
+        while('msg' not in resp):
+          resp = client.converse('my-user-session-42',textmsg, context0)
+          print ("This resp ")
+          print(resp)
+                 voice.send_sms(msg[u'from'],str(resp[u'msg']))
+
+      elif resp[u'value'] == "weather":
+        #resp = client.run_actions('my-user-session-42',textmsg, context0)
+        print("This resp weather ")
+        #print (resp)
+        #while('foodList' not in resp):
+        #    resp = client.run_actions('my-user-session-42',textmsg, context0)
+        #    print ("This resp ")
+        #    print(resp)
+        #voice.send_sms(msg[u'from'],str(resp['forecast']))
+      else:
+        print("Else")
+    
     send_message(PAT, sender, message)
   return "ok"
 
