@@ -1,4 +1,8 @@
+from flask import Flask, request
+import json
+import requests
 
+app = Flask(__name__)
 from wit import Wit
 from googlevoice import Voice
 import BeautifulSoup
@@ -128,14 +132,14 @@ while(1==1):
                 voice.send_sms(msg[u'from'],str(resp[u'msg']))
 
             elif resp[u'value'] == "weather":
-                resp = client.run_actions('my-user-session-42',textmsg, context0)
+                #resp = client.run_actions('my-user-session-42',textmsg, context0)
                 print("This resp weather ")
-                print (resp)
-                while('foodList' not in resp):
-                    resp = client.run_actions('my-user-session-42',textmsg, context0)
-                    print ("This resp ")
-                    print(resp)
-                voice.send_sms(msg[u'from'],str(resp['forecast']))
+                #print (resp)
+                #while('foodList' not in resp):
+                #    resp = client.run_actions('my-user-session-42',textmsg, context0)
+                #    print ("This resp ")
+                #    print(resp)
+                #voice.send_sms(msg[u'from'],str(resp['forecast']))
             else:
                 print("Else")
                 
