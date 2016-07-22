@@ -31,9 +31,9 @@ def handle_messages():
   print "Handling Messages"
   payload = request.get_data()
   print payload
-  for sender, message in messaging_events(payload):
-    print "Incoming from %s: %s" % (sender, message)
-    resp = client.message(message)
+  for sender, textmsg in messaging_events(payload):
+    print "Incoming from %s: %s" % (sender, textmsg)
+    resp = client.message(textmsg)
     resp = resp[u'entities']
     resp = resp[u'intent']
     resp = resp[0]
@@ -47,7 +47,8 @@ def handle_messages():
           resp = client.run_actions('my-user-session-42',textmsg, context0)
           print ("This resp ")
           print(resp)
-                 voice.send_sms(msg[u'from'],str(resp['foodList']))
+          message = str(resp['foodList'])
+          send_message(PAT, sender, message)
          
       elif resp[u'value'] == "greetings":
         resp = client.converse('my-user-session-42',textmsg, context0)
@@ -57,8 +58,8 @@ def handle_messages():
           resp = client.converse('my-user-session-42',textmsg, context0)
           print ("This resp ")
           print(resp)
-                 voice.send_sms(msg[u'from'],str(resp[u'msg']))
-
+          message = str(resp["msg"])
+          send_message(PAT, sender, message)
       elif resp[u'value'] == "weather":
         #resp = client.run_actions('my-user-session-42',textmsg, context0)
         print("This resp weather ")
@@ -68,10 +69,12 @@ def handle_messages():
         #    print ("This resp ")
         #    print(resp)
         #voice.send_sms(msg[u'from'],str(resp['forecast']))
+        message = "weather"
+        send_message(PAT, sender, message)
       else:
         print("Else")
-    
-    send_message(PAT, sender, message)
+        message = "else"
+        send_message(PAT, sender, message)
   return "ok"
 
 def messaging_events(payload):
