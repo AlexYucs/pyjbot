@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 from random import randint
-from googlevoice import Voice
 
 import urllib
 import time
