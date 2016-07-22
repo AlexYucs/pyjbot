@@ -53,11 +53,11 @@ def handle_messages():
          
       elif resp[u'value'] == "greetings":
         print("This resp greetings RIGHT HERE")
-        resp = client.converse('my-user-session-42',textmsg, context0)
+        resp = client.converse('my-user-session-42',message, context0)
         print("This resp greetings ")
         print (resp)
         while('msg' not in resp):
-          resp = client.converse('my-user-session-42',textmsg, context0)
+          resp = client.converse('my-user-session-42',message, context0)
           print ("This resp HERE ")
           print(resp)
           
