@@ -1,6 +1,5 @@
 bs4
 wit
-urllib3
 urllib
 pygooglevoice
 BeautifulSoup
