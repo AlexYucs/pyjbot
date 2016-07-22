@@ -52,6 +52,7 @@ def handle_messages():
         send_message(PAT, sender, message)
          
       elif resp[u'value'] == "greetings":
+        print("This resp greetings RIGHT HERE")
         resp = client.converse('my-user-session-42',textmsg, context0)
         print("This resp greetings ")
         print (resp)
