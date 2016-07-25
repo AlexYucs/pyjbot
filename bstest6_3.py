@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 from random import randint
+import lxml
 
 import urllib
 import time
