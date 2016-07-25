@@ -15,7 +15,7 @@ class foodSites:
 
     def ingredList(self, site):
         htmlpg = urllib.urlopen("http://allrecipes.com"+site)
-        soup = BeautifulSoup(htmlpg,"html5lib")
+        soup = BeautifulSoup(htmlpg,"lxml")
         ingr = soup.findAll('li', class_= "checkList__line")
         fin = ""
         for ele in ingr:
