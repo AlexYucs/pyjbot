@@ -25,7 +25,7 @@ class foodSites:
 
     def findLink(self, theLink):
         htmlpg = urllib.urlopen(theLink)
-        soup = BeautifulSoup(htmlpg,"html5lib")
+        soup = BeautifulSoup(htmlpg,"lxml")
         print(soup.title.get_text())
         recip_list = soup.findAll('article', class_="grid-col--fixed-tiles")
         listr = []
