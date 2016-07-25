@@ -3,7 +3,8 @@
 - 500 errors from somewhere
 - Fixed infinite hi
 - FB messages are limited to 320 chars
-- Limited to ingredients of one recipe?
+- Limited to ingredients of one recipe
+- Recipe ingredient requests now work
 - Lxml since python parser is not working for bs4
 
 #V6.1
