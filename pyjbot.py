@@ -147,9 +147,7 @@ def get_cooking(ent, cont):
     print(cont)
     print (ent)
     context = cont
-    cook = foodSites()
-    cook.initList()
-    context['foodList'] = cook.getIngred()
+    context['foodList'] = "FOOD THIS"
     return context
     
 
