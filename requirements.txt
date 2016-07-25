@@ -1,6 +1,7 @@
 bs4
 wit
 urllib3
+lxml
 pygooglevoice
 BeautifulSoup
 cycler==0.10.0
