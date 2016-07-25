@@ -2,6 +2,9 @@ from flask import Flask, request
 import json
 import requests
 
+import sys
+import logging
+
 from wit import Wit
 import BeautifulSoup
 import time
@@ -10,6 +13,9 @@ from bstest6_3 import foodSites
 
 
 app = Flask(__name__)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
@@ -40,15 +46,15 @@ def handle_messages():
     print ("Response type is.... "+resp[u'value'])
     if u'value' in resp:
       if resp[u'value'] == "grocery":
-        print("THIS GROCERY RIGHT HERE")
-        resp = client.run_actions('my-user-session-42',message, context0)
-        print("This resp grocery ")
-        print (resp)
-        while('foodList' not in resp):
-          resp = client.run_actions('my-user-session-42',message, context0)
-          print ("This resp ")
-          print(resp)
-        message = str(resp['foodList'])
+        #print("THIS GROCERY RIGHT HERE")
+        #resp = client.run_actions('my-user-session-42',message, context0)
+        #print("This resp grocery ")
+        #print (resp)
+        #while('foodList' not in resp):
+        #  resp = client.run_actions('my-user-session-42',message, context0)
+        #  print ("This resp ")
+        #  print(resp)
+        message = get_cooking()
         send_message(PAT, sender, message)
          
       elif resp[u'value'] == "greetings":
@@ -142,14 +148,12 @@ def get_forecast(request):
 
     return context
 
-def get_cooking(ent, cont):
+def get_cooking():
     print("Inside grocery")
-    print(cont)
-    print (ent)
-    context = cont
+    context = ""
     cook = foodSites()
     cook.initList()
-    context['foodList'] = cook.getIngred()
+    context= cook.getIngred()
     return context
     
 
