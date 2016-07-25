@@ -1,3 +1,9 @@
+#V6.2
+- Scrapped the Wit.ai run_actions section
+- 500 errors from somewhere
+- FB messages are limited to 320 chars
+- 
+
 #V6.1
 - Facebook support now works (It can connect and send/recieve messages)
 - Infinite loop on greetings from wit.ai
