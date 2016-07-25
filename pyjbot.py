@@ -45,7 +45,7 @@ def handle_messages():
         print("This resp grocery ")
         print (resp)
         while('foodList' not in resp):
-          resp = client.converse('my-user-session-42',message, context0)
+          resp = client.run_action('my-user-session-42',message, context0)
           print ("This resp ")
           print(resp)
         message = str(resp['foodList'])
