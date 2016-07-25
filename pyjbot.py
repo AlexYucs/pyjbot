@@ -64,7 +64,7 @@ def handle_messages():
         print("the msg is "+resp['msg'])
         message = str(resp["msg"])
         print("Trying to send...")
-        send_message(PAT, sender, message)
+        #send_message(PAT, sender, message)
         print("Probably sent")
       elif resp[u'value'] == "weather":
         #resp = client.run_actions('my-user-session-42',textmsg, context0)
