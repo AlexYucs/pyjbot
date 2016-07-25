@@ -2,6 +2,8 @@ from flask import Flask, request
 import json
 import requests
 
+import logging
+
 from wit import Wit
 import BeautifulSoup
 import time
@@ -10,6 +12,9 @@ from bstest6_3 import foodSites
 
 
 app = Flask(__name__)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
