@@ -1,6 +1,7 @@
 #V6.2
 - Scrapped the Wit.ai run_actions section
 - 500 errors from somewhere
+- Fixed infinite hi
 - FB messages are limited to 320 chars
 - Limited to ingredients of one recipe?
 - Lxml since python parser is not working for bs4
