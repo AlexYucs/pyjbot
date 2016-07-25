@@ -2,7 +2,8 @@
 - Scrapped the Wit.ai run_actions section
 - 500 errors from somewhere
 - FB messages are limited to 320 chars
-- 
+- Limited to ingredients of one recipe?
+- Lxml since python parser is not working for bs4
 
 #V6.1
 - Facebook support now works (It can connect and send/recieve messages)
