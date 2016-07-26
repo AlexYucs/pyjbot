@@ -60,7 +60,7 @@ def handle_messages():
         message = get_cooking()
         send_message(PAT, sender, message)
         send_message(PAT, sender, site)   
-      elif resp[u'value'] == "grocery":
+      elif resp[u'value'] == "xkcd":
         #print("THIS GROCERY RIGHT HERE")
         #resp = client.run_actions('my-user-session-42',message, context0)
         #print("This resp grocery ")
