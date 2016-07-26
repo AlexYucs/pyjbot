@@ -36,6 +36,8 @@ def handle_verification():
 def handle_messages():
   global site
   context0 = {}
+  count = 0
+  
   print "Handling Messages"
   payload = request.get_data()
   print payload
@@ -100,7 +102,15 @@ def handle_messages():
         send_message(PAT, sender, message)
       else:
         print("Else")
-        message = "else"
+        resp = client.converse('my-user-session-42',message, context0)
+        while('msg' not in resp and count <=10):
+          resp = client.converse('my-user-session-42',message, context0)
+          print ("This resp HERE ")
+          print(resp)
+          
+        print("the msg is "+resp['msg'])
+        message = str(resp["msg"])
+        print("Trying to send...")
         send_message(PAT, sender, message)
   return "ok"
 
