@@ -60,7 +60,18 @@ def handle_messages():
         message = get_cooking()
         send_message(PAT, sender, message)
         send_message(PAT, sender, site)   
-         
+      elif resp[u'value'] == "grocery":
+        #print("THIS GROCERY RIGHT HERE")
+        #resp = client.run_actions('my-user-session-42',message, context0)
+        #print("This resp grocery ")
+        #print (resp)
+        #while('foodList' not in resp):
+        #  resp = client.run_actions('my-user-session-42',message, context0)
+        #  print ("This resp ")
+        #  print(resp)
+        message = "http://xkcd.com/"
+        send_message(PAT, sender, message)
+        
       elif resp[u'value'] == "greetings":
         print("This resp greetings RIGHT HERE")
         resp = client.converse('my-user-session-42',message, context0)
