@@ -17,6 +17,8 @@ app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
+site = ''
+
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
 PAT = 'EAAXQgdDXC2kBAI2zLHJSZA6Aapz1iPCodArxZAU2lDZAmt7IYrKgewl6a6OWvsCRx0nv6hvhrAiIPmhUKBffeJ9V7YGDoZBENixzZCPqpEM3OvZBcBdZCori4RtBC5nVdJZA6mfLgoIOruJE96Xvo0ZBqIPu6OXzBwbCxVzOE8mcoyAZDZD'
@@ -32,6 +34,7 @@ def handle_verification():
 
 @app.route('/', methods=['POST'])
 def handle_messages():
+  global site
   context0 = {}
   print "Handling Messages"
   payload = request.get_data()
@@ -56,6 +59,7 @@ def handle_messages():
         #  print(resp)
         message = get_cooking()
         send_message(PAT, sender, message)
+        send_message(PAT, sender, site)   
          
       elif resp[u'value'] == "greetings":
         print("This resp greetings RIGHT HERE")
@@ -150,10 +154,12 @@ def get_forecast(request):
 
 def get_cooking():
     print("Inside grocery")
+    global site
     context = ""
     cook = foodSites()
     cook.initList()
     context= cook.getIngred()
+    site = cook.getSites()
     return context
     
 
