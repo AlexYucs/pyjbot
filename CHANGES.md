@@ -1,3 +1,13 @@
+#To-Do List:
+- 320 char limit, send multiple messages for bigger texts?
+- Some form of database for recipes
+- Consolidate recipe ingredients for multiple recipes
+- Other Wit story types
+- Search function
+- Song sender
+- News filter
+- Comic finder
+
 #V6.2
 - Scrapped the Wit.ai run_actions section
 - 500 errors from somewhere
