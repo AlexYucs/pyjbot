@@ -6,12 +6,11 @@
 - Search function
 - Song sender
 - News filter
-- Comic finder
 
-#Chatbot:
-- Reflection similar to Eliza
-- Data store for each session. Name, height, weight, etc
-- repeat phrases learned from chat logs like chatterbot
+#V6.5
+- Eliza.py added
+- Basically just reflects questions, not bad
+- Working on weather request next
 
 #V6.4
 - Memory leak issues with aiml bot.
