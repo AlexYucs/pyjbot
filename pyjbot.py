@@ -51,6 +51,7 @@ def handle_messages():
   global site
   context0 = {}
   count = 0
+  global chatAl
   
   if chatAl:
     print "Handling Messages"
