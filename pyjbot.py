@@ -62,7 +62,7 @@ def handle_messages():
       if message == "bye":
         chatAl =False
       #m1 = kernel.respond(message)
-      m1 = analyze(message)
+      m1 = eliza.analyze(message)
       #print m1
       print("Trying to send...")
       send_message(PAT, sender, m1)
