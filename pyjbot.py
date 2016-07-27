@@ -17,11 +17,17 @@ from bstest6_3 import foodSites
 
 app = Flask(__name__)
 
+#alice
+kernel = aiml.Kernel()
+kernel.learn("std-startup.xml")
+kernel.respond("load aiml b")
+
 #logs errors for heroku 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
 site = ''
+chatAl = False
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
@@ -46,86 +52,89 @@ def handle_messages():
   context0 = {}
   count = 0
   
-  print "Handling Messages"
-  payload = request.get_data()
-  print payload
-  for sender, message in messaging_events(payload):
-    print "Incoming from %s: %s" % (sender, message)
-    print type(message)
-    resp = client.message(message)
-    resp = resp[u'entities']
-    resp = resp[u'intent']
-    resp = resp[0]
-    print ("Response type is.... "+resp[u'value'])
+  if chatAl:
+    print "Handling Messages"
+    payload = request.get_data()
+    print payload
+    for sender, message in messaging_events(payload):
+      print "Incoming from %s: %s" % (sender, message)
+      print("Alice bot")
+      m1 = kernel.respond(message)
     
-    #id type of response and run correct method
-    if u'value' in resp:
-      if resp[u'value'] == "grocery":
-        message = get_cooking()
-        send_message(PAT, sender, message)
-        send_message(PAT, sender, site) 
-        
-      elif resp[u'value'] == "xkcd":
-        message = "http://xkcd.com/"
-        send_message(PAT, sender, message)
-        
-      elif resp[u'value'] == "greetings":
-        print("This resp greetings RIGHT HERE")
-        resp = client.converse('my-user-session-42',message, context0)
-        print("This resp greetings ")
-        print (resp)
-        while('msg' not in resp):
-          resp = client.converse('my-user-session-42',message, context0)
-          print ("This resp HERE ")
-          print(resp)
+      print m1
+      print("Trying to send...")
+      send_message(PAT, sender, m1)
+      print("Probably sent")
+  else:
+    print "Handling Messages"
+    payload = request.get_data()
+    print payload
+    for sender, message in messaging_events(payload):
+      print "Incoming from %s: %s" % (sender, message)
+      print type(message)
+      resp = client.message(message)
+      resp = resp[u'entities']
+      resp = resp[u'intent']
+      resp = resp[0]
+      print ("Response type is.... "+resp[u'value'])
+      
+      #id type of response and run correct method
+      if u'value' in resp:
+        if resp[u'value'] == "grocery":
+          message = get_cooking()
+          send_message(PAT, sender, message)
+          send_message(PAT, sender, site) 
           
-        print("the msg is "+resp['msg'])
-        message = str(resp["msg"])
-        print("Trying to send...")
-        send_message(PAT, sender, message)
-        print("Probably sent")
-        
-      elif resp[u'value'] == "talk":
-        print("This resp greetings RIGHT HERE")
-        # Create the kernel and learn AIML files
-        kernel = aiml.Kernel()
-        kernel.learn("std-startup.xml")
-        kernel.respond("load aiml b")
-
-        # Press CTRL-C to break this loop
-        while True:
-          print kernel.respond(raw_input("Enter your message >> "))
-          message = kernel.respond()
+        elif resp[u'value'] == "xkcd":
+          message = "http://xkcd.com/"
+          send_message(PAT, sender, message)
+          
+        elif resp[u'value'] == "greetings":
+          print("This resp greetings RIGHT HERE")
+          resp = client.converse('my-user-session-42',message, context0)
+          print("This resp greetings ")
+          print (resp)
+          while('msg' not in resp):
+            resp = client.converse('my-user-session-42',message, context0)
+            print ("This resp HERE ")
+            print(resp)
+            
+          print("the msg is "+resp['msg'])
+          message = str(resp["msg"])
           print("Trying to send...")
           send_message(PAT, sender, message)
           print("Probably sent")
-  
-        #not working atm
-      elif resp[u'value'] == "weather":
-        #resp = client.run_actions('my-user-session-42',textmsg, context0)
-        print("This resp weather ")
-        #print (resp)
-        #while('foodList' not in resp):
-        #    resp = client.run_actions('my-user-session-42',textmsg, context0)
-        #    print ("This resp ")
-        #    print(resp)
-        #voice.send_sms(msg[u'from'],str(resp['forecast']))
-        message = "weather"
-        send_message(PAT, sender, message)
-        
-        
-      else:
-        print("Else")
-        resp = client.converse('my-user-session-42',message, context0)
-        while('msg' not in resp and count <=10):
-          resp = client.converse('my-user-session-42',message, context0)
-          print ("This resp HERE ")
-          print(resp)
           
-        print("the msg is "+resp['msg'])
-        message = str(resp["msg"])
-        print("Trying to send...")
-        send_message(PAT, sender, message)
+        elif resp[u'value'] == "talk":
+          chatAl =True
+          send_message(PAT, sender, "Okay, what's up?")
+    
+          #not working atm
+        elif resp[u'value'] == "weather":
+          #resp = client.run_actions('my-user-session-42',textmsg, context0)
+          print("This resp weather ")
+          #print (resp)
+          #while('foodList' not in resp):
+          #    resp = client.run_actions('my-user-session-42',textmsg, context0)
+          #    print ("This resp ")
+          #    print(resp)
+          #voice.send_sms(msg[u'from'],str(resp['forecast']))
+          message = "weather"
+          send_message(PAT, sender, message)
+          
+          
+        else:
+          print("Else")
+          resp = client.converse('my-user-session-42',message, context0)
+          while('msg' not in resp and count <=10):
+            resp = client.converse('my-user-session-42',message, context0)
+            print ("This resp HERE ")
+            print(resp)
+            
+          print("the msg is "+resp['msg'])
+          message = str(resp["msg"])
+          print("Trying to send...")
+          send_message(PAT, sender, message)
   return "ok"
 
 #Sorts messages
