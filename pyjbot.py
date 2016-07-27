@@ -18,9 +18,9 @@ from bstest6_3 import foodSites
 app = Flask(__name__)
 
 #alice
-kernel = aiml.Kernel()
-kernel.learn("std-startup.xml")
-kernel.respond("load aiml b")
+#kernel = aiml.Kernel()
+#kernel.learn("std-startup.xml")
+#kernel.respond("load aiml b")
 
 #logs errors for heroku 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
