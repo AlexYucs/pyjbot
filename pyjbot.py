@@ -59,6 +59,8 @@ def handle_messages():
     for sender, message in messaging_events(payload):
       print "Incoming from %s: %s" % (sender, message)
       print("Alice bot")
+      if message == "bye":
+        chatAl =False
       m1 = kernel.respond(message)
     
       print m1
