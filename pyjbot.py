@@ -6,14 +6,16 @@ import sys
 import logging
 
 from wit import Wit
-import BeautifulSoup
+import BeautifulSoup #not being used
 import time
 
+#grocery list class
 from bstest6_3 import foodSites
 
 
 app = Flask(__name__)
 
+#logs errors for heroku 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 
@@ -22,6 +24,8 @@ site = ''
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
 PAT = 'EAAXQgdDXC2kBAI2zLHJSZA6Aapz1iPCodArxZAU2lDZAmt7IYrKgewl6a6OWvsCRx0nv6hvhrAiIPmhUKBffeJ9V7YGDoZBENixzZCPqpEM3OvZBcBdZCori4RtBC5nVdJZA6mfLgoIOruJE96Xvo0ZBqIPu6OXzBwbCxVzOE8mcoyAZDZD'
+
+#verify
 @app.route('/', methods=['GET'])
 def handle_verification():
   print "Handling Verification."
@@ -32,6 +36,8 @@ def handle_verification():
     print "Verification failed!"
     return 'Error, wrong validation token'
 
+
+#messaging
 @app.route('/', methods=['POST'])
 def handle_messages():
   global site
@@ -49,28 +55,15 @@ def handle_messages():
     resp = resp[u'intent']
     resp = resp[0]
     print ("Response type is.... "+resp[u'value'])
+    
+    #id type of response and run correct method
     if u'value' in resp:
       if resp[u'value'] == "grocery":
-        #print("THIS GROCERY RIGHT HERE")
-        #resp = client.run_actions('my-user-session-42',message, context0)
-        #print("This resp grocery ")
-        #print (resp)
-        #while('foodList' not in resp):
-        #  resp = client.run_actions('my-user-session-42',message, context0)
-        #  print ("This resp ")
-        #  print(resp)
         message = get_cooking()
         send_message(PAT, sender, message)
-        send_message(PAT, sender, site)   
+        send_message(PAT, sender, site) 
+        
       elif resp[u'value'] == "xkcd":
-        #print("THIS GROCERY RIGHT HERE")
-        #resp = client.run_actions('my-user-session-42',message, context0)
-        #print("This resp grocery ")
-        #print (resp)
-        #while('foodList' not in resp):
-        #  resp = client.run_actions('my-user-session-42',message, context0)
-        #  print ("This resp ")
-        #  print(resp)
         message = "http://xkcd.com/"
         send_message(PAT, sender, message)
         
@@ -89,6 +82,8 @@ def handle_messages():
         print("Trying to send...")
         send_message(PAT, sender, message)
         print("Probably sent")
+        
+        #not working atm
       elif resp[u'value'] == "weather":
         #resp = client.run_actions('my-user-session-42',textmsg, context0)
         print("This resp weather ")
@@ -100,6 +95,8 @@ def handle_messages():
         #voice.send_sms(msg[u'from'],str(resp['forecast']))
         message = "weather"
         send_message(PAT, sender, message)
+        
+        
       else:
         print("Else")
         resp = client.converse('my-user-session-42',message, context0)
@@ -114,6 +111,7 @@ def handle_messages():
         send_message(PAT, sender, message)
   return "ok"
 
+#Sorts messages
 def messaging_events(payload):
   """Generate tuples of (sender_id, message_text) from the
   provided payload.
@@ -126,7 +124,7 @@ def messaging_events(payload):
     else:
       yield event["sender"]["id"], "I can't echo this"
 
-
+#Send the message. Limited to 320 char
 def send_message(token, recipient, text):
   """Send the message text to recipient with id recipient.
   """
@@ -141,12 +139,15 @@ def send_message(token, recipient, text):
   if r.status_code != requests.codes.ok:
     print r.text
 
+#wit ai method not implemented
 def merge():
     return 0
 
+#wit ai method not implemented (important probably)
 def error():
     return 0
 
+#wit ai method works
 def say(id, dict, response):
     print ("id " +id)
     print (dict)
@@ -159,6 +160,7 @@ def send(request, response):
 def my_action(request):
     print('Received from user...', request['text'])
 
+#gotta use a weather module
 def get_forecast(request):
     context = request['context']
     entities = request['entities']
@@ -173,6 +175,7 @@ def get_forecast(request):
 
     return context
 
+#works fine so far. Can't run from wit.ai
 def get_cooking():
     print("Inside grocery")
     global site
@@ -196,10 +199,6 @@ actions = {
 
 #server access
 client = Wit(access_token="ZNJWKAFJBJI4UXBMTL2O4YW2RNKOSABS", actions=actions)
-
-#client token
-#client = Wit(access_token="2F5GRMKTGCRTVHIAZO7HXY64LFFSVYWL", actions=actions)
-#client.interactive()
 
 
 if __name__ == '__main__':
