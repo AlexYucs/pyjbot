@@ -59,14 +59,14 @@ def handle_messages():
     if chatAl:
       #print "Incoming from %s: %s" % (sender, message)
       #print("Alice bot")
-      #if message == "bye":
-      chatAl =False
+      if message == "bye":
+        chatAl =False
       #m1 = kernel.respond(message)
-    
+      m1 = analyze(message)
       #print m1
-      #print("Trying to send...")
-      #send_message(PAT, sender, m1)
-      #print("Probably sent")
+      print("Trying to send...")
+      send_message(PAT, sender, m1)
+      print("Probably sent")
     else:
       print "Incoming from %s: %s" % (sender, message)
       print type(message)
