@@ -1,6 +1,6 @@
 bs4
 wit
-pyaiml
+aiml
 urllib3
 lxml
 pygooglevoice
