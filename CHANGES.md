@@ -15,6 +15,7 @@
 
 #V6.3
 - Attempting to add A.L.I.C.E to the fb bot
+- Need to find a way to loop responses inside event handling for the aiml bot
 
 #V6.2
 - Scrapped the Wit.ai run_actions section
