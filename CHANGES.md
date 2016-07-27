@@ -13,7 +13,7 @@
 - Data store for each session. Name, height, weight, etc
 - repeat phrases learned from chat logs like chatterbot
 
-#6.3
+#V6.3
 - Attempting to add A.L.I.C.E to the fb bot
 
 #V6.2
