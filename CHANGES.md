@@ -13,6 +13,10 @@
 - Data store for each session. Name, height, weight, etc
 - repeat phrases learned from chat logs like chatterbot
 
+#V6.4
+- Memory leak issues with aiml bot.
+- Trying a different chat bot approach
+
 #V6.3
 - Attempting to add A.L.I.C.E to the fb bot
 - Need to find a way to loop responses inside event handling for the aiml bot
