@@ -9,6 +9,8 @@ from wit import Wit
 import BeautifulSoup #not being used
 import time
 
+import aiml
+
 #grocery list class
 from bstest6_3 import foodSites
 
