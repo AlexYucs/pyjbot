@@ -52,6 +52,7 @@ def handle_messages():
   context0 = {}
   count = 0
   global chatAl
+  print ("current " +chatAl)
   print "Handling Messages"
   payload = request.get_data()
   print payload
