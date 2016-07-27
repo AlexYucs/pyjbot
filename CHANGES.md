@@ -15,11 +15,13 @@
 
 #V6.4
 - Memory leak issues with aiml bot.
-- Trying a different chat bot approach
+- Trying a different chat bot approach later
+- Implementing weather
 
 #V6.3
 - Attempting to add A.L.I.C.E to the fb bot
 - Need to find a way to loop responses inside event handling for the aiml bot
+- Solved above, needed to set a flag to get around normal event handling
 
 #V6.2
 - Scrapped the Wit.ai run_actions section
