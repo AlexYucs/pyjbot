@@ -9,7 +9,7 @@ from wit import Wit
 import BeautifulSoup #not being used
 import time
 
-import aiml
+#import aiml
 
 #grocery list class
 from bstest6_3 import foodSites
@@ -18,9 +18,9 @@ from bstest6_3 import foodSites
 app = Flask(__name__)
 
 #alice
-kernel = aiml.Kernel()
-kernel.learn("std-startup.xml")
-kernel.respond("load aiml b")
+#kernel = aiml.Kernel()
+#kernel.learn("std-startup.xml")
+#kernel.respond("load aiml b")
 
 #logs errors for heroku 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
@@ -57,16 +57,16 @@ def handle_messages():
   print payload
   for sender, message in messaging_events(payload):
     if chatAl:
-      print "Incoming from %s: %s" % (sender, message)
-      print("Alice bot")
-      if message == "bye":
-        chatAl =False
-      m1 = kernel.respond(message)
+      #print "Incoming from %s: %s" % (sender, message)
+      #print("Alice bot")
+      #if message == "bye":
+      chatAl =False
+      #m1 = kernel.respond(message)
     
-      print m1
-      print("Trying to send...")
-      send_message(PAT, sender, m1)
-      print("Probably sent")
+      #print m1
+      #print("Trying to send...")
+      #send_message(PAT, sender, m1)
+      #print("Probably sent")
     else:
       print "Incoming from %s: %s" % (sender, message)
       print type(message)
