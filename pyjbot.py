@@ -76,7 +76,7 @@ def handle_messages():
         if u'intent' in resp:
           resp = resp[u'intent']
       else:
-        send_message(PAT, sender, "I'm sorry. I couldn't understand you. Please rephrase that.)
+        send_message(PAT, sender, "I'm sorry. I couldn't understand you. Please rephrase that.")
         return "ok"
       resp = resp[0]
       print ("Response type is.... "+resp[u'value'])
