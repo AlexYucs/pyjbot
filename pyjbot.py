@@ -75,6 +75,9 @@ def handle_messages():
         resp = resp[u'entities']
         if u'intent' in resp:
           resp = resp[u'intent']
+        else:
+          send_message(PAT, sender, "I'm sorry. I couldn't understand you. Please rephrase that.")
+          return "ok"
       else:
         send_message(PAT, sender, "I'm sorry. I couldn't understand you. Please rephrase that.")
         return "ok"
