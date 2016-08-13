@@ -9,10 +9,11 @@ import time
 
 class foodSites:
 
-
+    #Ingredient string and urls
     ingstr = ""
     linklist = ""
 
+    #function finds the ingredients at a given url for allrecipes.com
     def ingredList(self, site):
         htmlpg = urllib.urlopen("http://allrecipes.com"+site)
         soup = BeautifulSoup(htmlpg,"lxml")
@@ -23,6 +24,7 @@ class foodSites:
                 fin = fin + ele.span.get_text()+ "\n"
         return str(fin)
 
+    #function randomly picks a link from the main page of the chosen recipe type at allrecipes.com
     def findLink(self, theLink):
         htmlpg = urllib.urlopen(theLink)
         soup = BeautifulSoup(htmlpg,"lxml")
@@ -38,7 +40,7 @@ class foodSites:
         print("\n")
         return listr[num]
 
-
+    #function initializes the ingredients and url lists
     def initList(self):
         global ingstr
         global linklist
@@ -60,10 +62,12 @@ class foodSites:
 
         print(ingstr)
 
+    #return ingredient list
     def getIngred(self):
         global ingstr
         return ingstr
 
+    #return url list
     def getSites(self):
         global linklist
         return linklist
