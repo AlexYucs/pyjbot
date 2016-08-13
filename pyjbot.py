@@ -2,6 +2,7 @@ from flask import Flask, request
 import json
 import requests
 
+#for getting logs
 import sys
 import logging
 
@@ -48,30 +49,40 @@ def handle_verification():
 #messaging
 @app.route('/', methods=['POST'])
 def handle_messages():
+  #variables
   global site
   context0 = {}
   count = 0
   global chatAl
+  
   print "Handling Messages"
   payload = request.get_data()
   print payload
+  
+  #checks if chat option is on or not
   for sender, message in messaging_events(payload):
+    
+    #chatting with eliza ai
     if chatAl:
-      #print "Incoming from %s: %s" % (sender, message)
-      #print("Alice bot")
+      #end chat
       if message == "bye":
         chatAl =False
-      #m1 = kernel.respond(message)
+        
+      #chat and get response
       m1 = eliza.analyze(message)
-      #print m1
       print("Trying to send...")
       send_message(PAT, sender, m1)
       print("Probably sent")
+    
+    #not chatting. Use Wit.AI
     else:
+      
       print "Incoming from %s: %s" % (sender, message)
       print type(message)
-      resp = client.message(message)
+      resp = client.message(message) #get response from wit.ai
       print(resp)
+      
+      #decides what type of response it is
       if u'entities' in resp:
         resp = resp[u'entities']
         if u'intent' in resp:
@@ -82,11 +93,16 @@ def handle_messages():
       else:
         send_message(PAT, sender, "I'm sorry. I couldn't understand you. Please rephrase that.")
         return "ok"
+        
+      #if response is understood, get it
       resp = resp[0]
       print ("Response type is.... "+resp[u'value'])
-        
+      
+      
       #id type of response and run correct method
       if u'value' in resp:
+        
+        #grocery response to get list of groceries. From imported class
         if resp[u'value'] == "grocery":
           message = get_cooking()
           while( len(message) > 300):
@@ -95,16 +111,21 @@ def handle_messages():
             send_message(PAT, sender, msg2)
           send_message(PAT, sender, message)
           send_message(PAT, sender, site) 
+          
             
+        #get xkcd comic link, poorly implemented rn
         elif resp[u'value'] == "xkcd":
           message = "http://xkcd.com/"
           send_message(PAT, sender, message)
+          
             
+        #greetings response. Usually used to start up
         elif resp[u'value'] == "greetings":
           print("This resp greetings RIGHT HERE")
           resp = client.converse('my-user-session-42',message, context0)
           print("This resp greetings ")
           print (resp)
+          
           while('msg' not in resp):
             resp = client.converse('my-user-session-42',message, context0)
             print ("This resp HERE ")
@@ -115,12 +136,15 @@ def handle_messages():
           print("Trying to send...")
           send_message(PAT, sender, message)
           print("Probably sent")
-            
+        
+          
+        #talk sets chatAI to true and allows chat with eliza. Use "bye" to end  
         elif resp[u'value'] == "talk":
           chatAl =True
           send_message(PAT, sender, "Okay, what's up?")
-      
-            #not working atm
+        
+        
+        #not working atm
         elif resp[u'value'] == "weather":
           #resp = client.run_actions('my-user-session-42',textmsg, context0)
           print("This resp weather ")
@@ -134,6 +158,7 @@ def handle_messages():
           send_message(PAT, sender, message)
             
             
+        #catch all for other intents  
         else:
           print("Else")
           resp = client.converse('my-user-session-42',message, context0)
@@ -191,9 +216,11 @@ def say(id, dict, response):
     print ("respo "+response)
     return response
     
+#wit ai send method
 def send(request, response):
     print(response['text'])
 
+#wit ai function method
 def my_action(request):
     print('Received from user...', request['text'])
 
@@ -223,7 +250,7 @@ def get_cooking():
     site = cook.getSites()
     return context
     
-
+#wit ai action list
 actions = {
     'send': send,
     'getForecast': get_forecast,
