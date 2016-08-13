@@ -1,7 +1,6 @@
 import re
 import random
  
- 
 reflections = {
     "am": "are",
     "was": "were",
