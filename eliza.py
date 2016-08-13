@@ -1,5 +1,7 @@
 import re
 import random
+
+//MIT Eliza AI from several decades ago. Uses reflection to respond.
  
 reflections = {
     "am": "are",
