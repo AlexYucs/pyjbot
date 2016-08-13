@@ -1,11 +1,15 @@
 #To-Do List:
-- 320 char limit, send multiple messages for bigger texts?
 - Some form of database for recipes
 - Consolidate recipe ingredients for multiple recipes
 - Other Wit story types
 - Search function
 - Song sender
 - News filter
+- Praw/reddit module?
+
+#V6.6
+- Splits up larger messages to fit messenger char limit
+- Working on search function
 
 #V6.5
 - Eliza.py added
