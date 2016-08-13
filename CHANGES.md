@@ -6,10 +6,12 @@
 - Song sender
 - News filter
 - Praw/reddit module?
+- Help option
 
 #V6.6
 - Splits up larger messages to fit messenger char limit
 - Working on search function
+- Checks if recieved messages are part of story sets, otherwise asks for a rephrase
 
 #V6.5
 - Eliza.py added
