@@ -88,6 +88,10 @@ def handle_messages():
       if u'value' in resp:
         if resp[u'value'] == "grocery":
           message = get_cooking()
+          while( len(message) > 300):
+            msg2 = message[:300]
+            message = message[300:]
+            send_message(PAT, sender, msg2)
           send_message(PAT, sender, message)
           send_message(PAT, sender, site) 
             
