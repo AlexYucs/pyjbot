@@ -71,6 +71,7 @@ def handle_messages():
       print "Incoming from %s: %s" % (sender, message)
       print type(message)
       resp = client.message(message)
+      print(resp)
       if u'entities' in resp:
         resp = resp[u'entities']
         if u'intent' in resp:
