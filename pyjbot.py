@@ -32,7 +32,7 @@ chatAl = False
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
-PAT = 'EAAXQgdDXC2kBAI2zLHJSZA6Aapz1iPCodArxZAU2lDZAmt7IYrKgewl6a6OWvsCRx0nv6hvhrAiIPmhUKBffeJ9V7YGDoZBENixzZCPqpEM3OvZBcBdZCori4RtBC5nVdJZA6mfLgoIOruJE96Xvo0ZBqIPu6OXzBwbCxVzOE8mcoyAZDZD'
+PAT = FBKey
 
 #verify
 @app.route('/', methods=['GET'])
@@ -262,7 +262,7 @@ actions = {
 }
 
 #server access
-client = Wit(access_token="ZNJWKAFJBJI4UXBMTL2O4YW2RNKOSABS", actions=actions)
+client = Wit(access_token=ATKey, actions=actions)
 
 
 if __name__ == '__main__':
