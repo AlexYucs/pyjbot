@@ -16,6 +16,8 @@ import time
 from bstest6_3 import foodSites
 import eliza
 
+import os
+
 app = Flask(__name__)
 
 #alice
@@ -32,7 +34,7 @@ chatAl = False
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
-PAT = FBKey
+PAT = str(os.environ.get('FBKey',3))
 
 #verify
 @app.route('/', methods=['GET'])
@@ -262,7 +264,7 @@ actions = {
 }
 
 #server access
-client = Wit(access_token=ATKey, actions=actions)
+client = Wit(access_token=str(os.environ.get('ATKey',3)), actions=actions)
 
 
 if __name__ == '__main__':
