@@ -62,9 +62,9 @@ def handle_messages():
   payload = request.get_data()
   print payload
   
-  if True:
-    print(payload.coordinates)
-    a = payload.coordinates.lat
+  #if True:
+   # print(payload.coordinates)
+    #a = payload.coordinates.lat
     #b = payload.coordinates.long
   
   #checks if chat option is on or not
