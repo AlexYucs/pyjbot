@@ -305,7 +305,7 @@ def get_restaurants():
   global lat
   global lon
   Location = lat + "," + lon
-  loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&radius="+800+"&keyword=restaurant&key="+os.environ.get('GAPI',3)
+  loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&radius=800&keyword=restaurant&key="+str(os.environ.get('GAPI',3))
   resp = urllib.urlopen(loc_url)
   data = resp.read()
   jData = json.loads(data)
