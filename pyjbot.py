@@ -68,12 +68,12 @@ def handle_messages():
   for event in msgev:
     if "message" in event:
       print event["message"]
-        if "attachments" in event["message"]:
-          print event["message"]["attachments"]
-            if "payload" in event["message"]["attachments"]:
-              print event["message"]["attachments"]["payload"]
-                if "coordinates" in event["message"]["attachments"]["payload"]:
-                  print "done"
+      if "attachments" in event["message"]:
+        print event["message"]["attachments"]
+        if "payload" in event["message"]["attachments"]:
+          print event["message"]["attachments"]["payload"]
+          if "coordinates" in event["message"]["attachments"]["payload"]:
+            print "done"
   
   #checks if chat option is on or not
   for sender, message in messaging_events(payload):
