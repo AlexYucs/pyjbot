@@ -31,6 +31,7 @@ app.logger.setLevel(logging.ERROR)
 
 site = ''
 chatAl = False
+loc = False
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
@@ -76,6 +77,9 @@ def handle_messages():
       send_message(PAT, sender, m1)
       print("Probably sent")
     
+    elif loc:
+      
+    
     #not chatting. Use Wit.AI
     else:
       
@@ -120,6 +124,14 @@ def handle_messages():
           message = "http://xkcd.com/"
           send_message(PAT, sender, message)
           
+        #Location data to switch modes
+        elif resp[u'value'] == "Location":
+          resp = client.converse('my-user-session-42',message, context0)
+          while('msg' not in resp):
+            resp = client.converse('my-user-session-42',message, context0)
+          message = str(resp["msg"])
+          send_message(PAT, sender, message)
+          loc = True
             
         #greetings response. Usually used to start up
         elif resp[u'value'] == "greetings":
