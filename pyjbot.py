@@ -202,6 +202,20 @@ def messaging_events(payload):
     else:
       yield event["sender"]["id"], "I can't echo this"
 
+#Sorts locations
+def messaging_loc(payload):
+  """Generate tuples of (sender_id, message_text) from the
+  provided payload.
+  """
+  data = json.loads(payload)
+  messaging_events = data["entry"][0]["messaging"]
+  for event in messaging_events:
+    if "message" in event and "attachments" in event["message"] and "payload" event["message"]["attachments"] in and "coordinates" in event["message"]["attachments"]["payload"]:
+      yield event["sender"]["id"], event["message"]["attachments"]["payload"]["coordinates"].encode('unicode_escape')
+    else:
+      yield event["sender"]["id"], "I can't echo this"
+
+
 #Send the message. Limited to 320 char
 def send_message(token, recipient, text):
   """Send the message text to recipient with id recipient.
