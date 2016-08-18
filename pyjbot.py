@@ -62,10 +62,8 @@ def handle_messages():
   payload = request.get_data()
   print payload
   
-  if "coordinates" in payload:
-    print(payload.coordinates)
-    #a = payload.coordinates.lat
-    #b = payload.coordinates.long
+  for sender, location in messaging_loc(payload):
+    print location
   
   #checks if chat option is on or not
   for sender, message in messaging_events(payload):
