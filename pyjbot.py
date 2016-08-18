@@ -144,7 +144,7 @@ def handle_messages():
           send_message(PAT, sender, message)
           
         #Location data to switch modes
-        elif resp[u'value'] == "restaurant":
+        elif resp[u'value'] == "restaurants":
           if loc:
             restaurants = get_restaurants()
             if restaurants['status'] == 'OK':
