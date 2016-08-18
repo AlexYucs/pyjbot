@@ -143,12 +143,11 @@ def handle_messages():
           send_message(PAT, sender, message)
           
         #Location data to switch modes
-        elif resp[u'value'] == "Location":
-          resp = client.converse('my-user-session-42',message, context0)
-          while('msg' not in resp):
-            resp = client.converse('my-user-session-42',message, context0)
-          message = str(resp["msg"])
-          send_message(PAT, sender, message)
+        elif resp[u'value'] == "restaurant":
+          if loc:
+            #
+          else:
+            send_message(PAT, sender, "Enter your location:")
           #loc = True
           time.sleep(6)
 
