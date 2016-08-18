@@ -77,6 +77,7 @@ def handle_messages():
             print atta["payload"]
             if "coordinates" in atta["payload"]:
               print "done"
+              print(atta["payload"]["coordinates"])
               #send_message(PAT, event["sender"]["id"], atta["payload"]["coordinates"]["lat"])
   
   #checks if chat option is on or not
