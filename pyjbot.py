@@ -65,21 +65,7 @@ def handle_messages():
 
   data = json.loads(payload)
   msgev = data["entry"][0]["messaging"]#[0]["message"]["attachments"][0]["payload"]["coordinates"]
-  print "msgev"
-  print msgev
-  for event in msgev:
-    print "first"
-    if "message" in event:
-      print "second"
-      print event["message"]
-      if "attachments" in event["message"]:
-        for atta in event["message"]["attachments"]:
-          if "payload" in atta:
-            print atta["payload"]
-            if "coordinates" in atta["payload"]:
-              print "done"
-              send_message(PAT, event["sender"]["id"], atta["payload"]["coordinates"]["lat"])
-  
+
   #checks if chat option is on or not
   for sender, message in messaging_events(payload):
     
