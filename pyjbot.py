@@ -136,7 +136,7 @@ def handle_messages():
           message = str(resp["msg"])
           send_message(PAT, sender, message)
           #loc = True
-          
+          time.sleep(6)
           data = json.loads(payload)
           msgev = data["entry"][0]["messaging"]
           for event in msgev:
