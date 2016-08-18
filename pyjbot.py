@@ -74,9 +74,9 @@ def handle_messages():
       print event["message"]
       if "attachments" in event["message"]:
         for atta in event["message"]["attachments"]:
-          if "payload" in event["message"]["attachments"]:
-            print event["message"]["attachments"]["payload"]
-            if "coordinates" in event["message"]["attachments"]["payload"]:
+          if "payload" in atta:
+            print atta["payload"]
+            if "coordinates" in atta["payload"]:
               print "done"
   
   #checks if chat option is on or not
