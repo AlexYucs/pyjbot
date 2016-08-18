@@ -149,9 +149,13 @@ def handle_messages():
         elif resp[u'value'] == "restaurants":
           
           print("rest method")
-          restaurants = get_restaurants(sender)
+          message = get_restaurants(sender)
           #if restaurants['status'] == 'OK':
-          send_message(PAT, sender, str(restaurants))
+          while( len(message) > 300):
+            msg2 = message[:300]
+            message = message[300:]
+            send_message(PAT, sender, msg2)
+          send_message(PAT, sender, message)
           #else:
           send_message(PAT, sender, "Not ok")
           
