@@ -149,7 +149,8 @@ def handle_messages():
         elif resp[u'value'] == "restaurants":
           
           print("rest method")
-          message = get_restaurants(sender)
+          message = str(get_restaurants(sender))
+          
           #if restaurants['status'] == 'OK':
           while( len(message) > 300):
             msg2 = message[:300]
