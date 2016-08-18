@@ -67,7 +67,24 @@ def handle_messages():
   print "Handling Messages"
   payload = request.get_data()
   print payload
-
+  data = json.loads(payload)
+  msgev = data["entry"][0]["messaging"]
+  for event in msgev:
+    if "message" in event:
+      if "attachments" in event["message"]:
+        for atta in event["message"]["attachments"]:
+          if "payload" in atta:
+            if "coordinates" in atta["payload"]:
+              print(atta["payload"]["coordinates"])
+              lat = atta["payload"]["coordinates"]["lat"]
+              lon = atta["payload"]["coordinates"]["long"]
+              send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
+              send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
+              loc = False
+              return "ok"
+  loc = False
+  send_message(PAT,event["sender"]["id"], "Canceled")
+  return "ok"
   
   #checks if chat option is on or not
   for sender, message in messaging_events(payload):
@@ -137,24 +154,7 @@ def handle_messages():
           send_message(PAT, sender, message)
           #loc = True
           time.sleep(6)
-          data = json.loads(payload)
-          msgev = data["entry"][0]["messaging"]
-          for event in msgev:
-            if "message" in event:
-              if "attachments" in event["message"]:
-                for atta in event["message"]["attachments"]:
-                  if "payload" in atta:
-                    if "coordinates" in atta["payload"]:
-                      print(atta["payload"]["coordinates"])
-                      lat = atta["payload"]["coordinates"]["lat"]
-                      lon = atta["payload"]["coordinates"]["long"]
-                      send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
-                      send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
-                      loc = False
-                      return "ok"
-          loc = False
-          send_message(PAT,event["sender"]["id"], "Canceled")
-          return "ok"
+
             
         #greetings response. Usually used to start up
         elif resp[u'value'] == "greetings":
