@@ -62,8 +62,12 @@ def handle_messages():
   payload = request.get_data()
   print payload
   
-  for sender, location in messaging_loc(payload):
-    print location
+
+  data = json.loads(payload)
+  msgev = data["entry"][0]["messaging"]
+  for event in msgev:
+    
+    print (event["message"]["attachments"]["payload"]["coordinates"].encode('unicode_escape'))
   
   #checks if chat option is on or not
   for sender, message in messaging_events(payload):
