@@ -153,7 +153,12 @@ def handle_messages():
           if message['status']== "OK":
             for place in message['results']:
               if 'permanently_closed' not in place or place['permanently_closed'] is False:
-                restaurant = "Name: "+str(place['name']) + "  Rating: "+str(place['rating']) 
+                restaurant = "Name: "+str(place['name']) +"  Rating: "
+                if 'rating' in place:
+                  restaurant+= str(place['rating'])
+                else:
+                  restaurant+= "None"
+                  
                 send_message(PAT, sender, restaurant)
           #message = str(get_restaurants(sender))
           #while( len(message) > 300):
