@@ -1,6 +1,7 @@
 from flask import Flask, request
 import json
 import requests
+import urllib
 
 #for getting logs
 import sys
@@ -145,7 +146,7 @@ def handle_messages():
         #Location data to switch modes
         elif resp[u'value'] == "restaurant":
           if loc:
-            #
+            
           else:
             send_message(PAT, sender, "Enter your location:")
           #loc = True
@@ -297,6 +298,18 @@ def get_cooking():
     site = cook.getSites()
     return context
     
+    
+def get_restaurants():
+  global lat
+  global lon
+  Location = lat + "," + lon
+  loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&radius="+800+"&keyword=restaurant&key="+os.environ.get('GAPI',3)
+  resp = urllib.urlopen(loc_url)
+  data = resp.read()
+  jData = json.loads(data)
+  return jData
+  
+  
 #wit ai action list
 actions = {
     'send': send,
