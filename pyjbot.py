@@ -80,7 +80,7 @@ def handle_messages():
               lat = atta["payload"]["coordinates"]["lat"]
               lon = atta["payload"]["coordinates"]["long"]
               f =  open("geo.txt", "w")
-              f.write(lat+","+lon)
+              f.write(str(lat)+","+str(lon))
               send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
               send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
               loc = True
