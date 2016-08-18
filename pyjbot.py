@@ -32,6 +32,8 @@ app.logger.setLevel(logging.ERROR)
 site = ''
 chatAl = False
 loc = False
+lat = ''
+lon = ''
 
 # This needs to be filled with the Page Access Token that will be provided
 # by the Facebook App that will be created.
@@ -57,28 +59,29 @@ def handle_messages():
   context0 = {}
   count = 0
   global chatAl
+  global loc
   
   print "Handling Messages"
   payload = request.get_data()
   print payload
   
-
-  data = json.loads(payload)
-  msgev = data["entry"][0]["messaging"]#[0]["message"]["attachments"][0]["payload"]["coordinates"]
-  print "msgev"
-  for event in msgev:
-    print "first"
-    if "message" in event:
-      print "second"
-      print event["message"]
-      if "attachments" in event["message"]:
-        for atta in event["message"]["attachments"]:
-          if "payload" in atta:
-            print atta["payload"]
-            if "coordinates" in atta["payload"]:
-              print "done"
-              print(atta["payload"]["coordinates"])
-              send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
+  if loc:
+    data = json.loads(payload)
+    msgev = data["entry"][0]["messaging"]
+    for event in msgev:
+      if "message" in event:
+        if "attachments" in event["message"]:
+          for atta in event["message"]["attachments"]:
+            if "payload" in atta:
+              if "coordinates" in atta["payload"]:
+                print(atta["payload"]["coordinates"])
+                send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
+                send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
+                loc = False
+                return "ok"
+    loc = False
+    send_message(PAT,event["sender"]["id"], "Canceled")
+    return "ok"
   
   #checks if chat option is on or not
   for sender, message in messaging_events(payload):
