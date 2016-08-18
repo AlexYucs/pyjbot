@@ -62,7 +62,7 @@ def handle_messages():
   payload = request.get_data()
   print payload
   
-  if loc:
+  if True:
     print(payload.coordinates)
     a = payload.coordinates.lat
     #b = payload.coordinates.long
