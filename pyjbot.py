@@ -152,7 +152,8 @@ def handle_messages():
           message = get_restaurants(sender)
           if message['status']== "OK":
             for place in message['results']:
-              restaurant = "Name: "+str(place['name']) + "  Rating: "+str(place['rating']) 
+              if 'permanently_closed' not in place:
+                restaurant = "Name: "+str(place['name']) + "  Rating: "+str(place['rating']) 
               send_message(PAT, sender, restaurant)
           #message = str(get_restaurants(sender))
           #while( len(message) > 300):
@@ -307,7 +308,7 @@ def get_restaurants(sender):
   Location = f.read()
   send_message(PAT, sender, str(Location))
   print("finished loc")
-  loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&radius=1600&keyword=restaurant&key="+str(os.environ.get('GAPI',3))
+  loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&radius=2500&keyword=restaurant&key="+str(os.environ.get('GAPI',3))
   print("url done")
   resp = urllib.urlopen(loc_url)
   print("json read")
