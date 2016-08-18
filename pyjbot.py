@@ -152,7 +152,8 @@ def handle_messages():
           restaurants = get_restaurants(sender)
           if restaurants['status'] == 'OK':
             send_message(PAT, sender, str(restaurants))
-            
+          else:
+            send_message(PAT, sender, "Not ok")
           
           #else:
            # send_message(PAT, sender, "Enter your location:")
