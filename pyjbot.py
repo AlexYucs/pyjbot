@@ -208,7 +208,7 @@ def messaging_loc(payload):
   data = json.loads(payload)
   messaging_events = data["entry"][0]["messaging"]
   for event in messaging_events:
-    if "message" in event and "attachments" in event["message"] and "payload" event["message"]["attachments"] in and "coordinates" in event["message"]["attachments"]["payload"]:
+    if "message" in event and "attachments" in event["message"] and "payload" in event["message"]["attachments"] and "coordinates" in event["message"]["attachments"]["payload"]:
       yield event["sender"]["id"], event["message"]["attachments"]["payload"]["coordinates"].encode('unicode_escape')
     else:
       yield event["sender"]["id"], "I can't echo this"
