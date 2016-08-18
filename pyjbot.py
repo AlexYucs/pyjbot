@@ -147,14 +147,18 @@ def handle_messages():
           
         #Location data to switch modes
         elif resp[u'value'] == "restaurants":
-          
+          restaurants = ''
           print("rest method")
-          message = str(get_restaurants(sender))
-          while( len(message) > 300):
-            msg2 = message[:300]
-            message = message[300:]
-            send_message(PAT, sender, msg2)
-          send_message(PAT, sender, message)
+          message = get_restaurants(sender)
+          if message['status']== "OK":
+            for place in message['results']:
+              send_message(PAT, sender, str(place['name']))
+          #message = str(get_restaurants(sender))
+          #while( len(message) > 300):
+          #  msg2 = message[:300]
+          #  message = message[300:]
+          #  send_message(PAT, sender, msg2)
+          #send_message(PAT, sender, message)
           #else:
           send_message(PAT, sender, "Not ok")
           
