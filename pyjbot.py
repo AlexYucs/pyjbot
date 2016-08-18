@@ -152,7 +152,7 @@ def handle_messages():
           restaurant = get_restaurants(sender)
           message = '' 
           for place in restaurant["result"]:
-            message+= "Name: "+place['name'] + "  Distance: "+place['vicinity']+" meters\n"
+            message+= "Name: "+str(place['name']) + "  Distance: "+str(place['vicinity'])+" meters\n"
           #if restaurants['status'] == 'OK':
           while( len(message) > 300):
             msg2 = message[:300]
@@ -232,19 +232,6 @@ def messaging_events(payload):
   for event in messaging_events:
     if "message" in event and "text" in event["message"]:
       yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
-    else:
-      yield event["sender"]["id"], "I can't echo this"
-
-#Sorts locations
-def messaging_loc(payload):
-  """Generate tuples of (sender_id, message_text) from the
-  provided payload.
-  """
-  data = json.loads(payload)
-  messaging_events = data["entry"][0]["messaging"]
-  for event in messaging_events:
-    if "message" in event and "attachments" in event["message"] and "payload" in event["message"]["attachments"] and "coordinates" in event["message"]["attachments"]["payload"]:
-      yield event["sender"]["id"], event["message"]["attachments"]["payload"]["coordinates"].encode('unicode_escape')
     else:
       yield event["sender"]["id"], "I can't echo this"
 
