@@ -65,6 +65,8 @@ def handle_messages():
 
   data = json.loads(payload)
   msgev = data["entry"][0]["messaging"]
+  print "msgev"
+  print msgev
   for event in msgev:
     print "first"
     if "message" in event:
