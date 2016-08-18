@@ -56,15 +56,19 @@ def handle_verification():
 def handle_messages():
   #variables
   global site
-  context0 = {}
-  count = 0
   global chatAl
   global loc
+  global lat 
+  global lon
+  
+  context0 = {}
+  count = 0
   
   print "Handling Messages"
   payload = request.get_data()
   print payload
   
+  #Location from user
   if loc:
     data = json.loads(payload)
     msgev = data["entry"][0]["messaging"]
@@ -75,6 +79,8 @@ def handle_messages():
             if "payload" in atta:
               if "coordinates" in atta["payload"]:
                 print(atta["payload"]["coordinates"])
+                lat = atta["payload"]["coordinates"]["lat"]
+                lon = atta["payload"]["coordinates"]["lon"]
                 send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
                 send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
                 loc = False
