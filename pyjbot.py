@@ -80,7 +80,7 @@ def handle_messages():
               lon = atta["payload"]["coordinates"]["long"]
               send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
               send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
-              loc = False
+              loc = True
               return "ok"
   
   #checks if chat option is on or not
