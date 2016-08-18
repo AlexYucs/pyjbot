@@ -153,7 +153,7 @@ def handle_messages():
           if message['status']== "OK":
             for place in message['results']:
               restaurant = "Name: "+str(place['name']) + "  Rating: "+str(place['rating']) 
-              send_message(PAT, sender, str(place['name']))
+              send_message(PAT, sender, restaurant)
           #message = str(get_restaurants(sender))
           #while( len(message) > 300):
           #  msg2 = message[:300]
