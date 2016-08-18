@@ -147,7 +147,7 @@ def handle_messages():
         elif resp[u'value'] == "restaurants":
           
           print("rest method")
-          restaurants = get_restaurants()
+          restaurants = get_restaurants(sender)
           if restaurants['status'] == 'OK':
             send_message(PAT, sender, str(restaurants))
             
@@ -304,10 +304,11 @@ def get_cooking():
     return context
     
     
-def get_restaurants():
+def get_restaurants(sender):
   global lat
   global lon
   Location = lat + "," + lon
+  send_message(PAT, sender, str(Location))
   print("finished loc")
   loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&radius=800&keyword=restaurant&key="+str(os.environ.get('GAPI',3))
   print("url done")
