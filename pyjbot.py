@@ -62,6 +62,11 @@ def handle_messages():
   payload = request.get_data()
   print payload
   
+  if loc:
+    print(payload.coordinates)
+    a = payload.coordinates.lat
+    #b = payload.coordinates.long
+  
   #checks if chat option is on or not
   for sender, message in messaging_events(payload):
     
@@ -76,9 +81,6 @@ def handle_messages():
       print("Trying to send...")
       send_message(PAT, sender, m1)
       print("Probably sent")
-    
-    elif loc:
-      
     
     #not chatting. Use Wit.AI
     else:
