@@ -145,12 +145,12 @@ def handle_messages():
           
         #Location data to switch modes
         elif resp[u'value'] == "restaurants":
-          if loc:
-            restaurants = get_restaurants()
-            if restaurants['status'] == 'OK':
-              print restaurants
-          else:
-            send_message(PAT, sender, "Enter your location:")
+          
+          restaurants = get_restaurants()
+          if restaurants['status'] == 'OK':
+            print restaurants
+          #else:
+           # send_message(PAT, sender, "Enter your location:")
           #loc = True
           time.sleep(6)
 
