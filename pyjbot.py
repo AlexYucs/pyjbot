@@ -82,9 +82,6 @@ def handle_messages():
               send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
               loc = False
               return "ok"
-  loc = False
-  send_message(PAT,event["sender"]["id"], "Canceled")
-  return "ok"
   
   #checks if chat option is on or not
   for sender, message in messaging_events(payload):
