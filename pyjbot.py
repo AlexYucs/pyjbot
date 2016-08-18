@@ -79,6 +79,8 @@ def handle_messages():
               print(atta["payload"]["coordinates"])
               lat = atta["payload"]["coordinates"]["lat"]
               lon = atta["payload"]["coordinates"]["long"]
+              f =  open("geo.txt", "w")
+              f.write(lat+","+lon)
               send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
               send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
               loc = True
@@ -305,9 +307,8 @@ def get_cooking():
     
     
 def get_restaurants(sender):
-  global lat
-  global lon
-  Location = lat + "," + lon
+  f = open("geo.txt", "r")
+  Location = f.read()
   send_message(PAT, sender, str(Location))
   print("finished loc")
   loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&radius=800&keyword=restaurant&key="+str(os.environ.get('GAPI',3))
