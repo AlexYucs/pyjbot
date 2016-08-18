@@ -80,7 +80,7 @@ def handle_messages():
               if "coordinates" in atta["payload"]:
                 print(atta["payload"]["coordinates"])
                 lat = atta["payload"]["coordinates"]["lat"]
-                lon = atta["payload"]["coordinates"]["lon"]
+                lon = atta["payload"]["coordinates"]["long"]
                 send_message(PAT, event["sender"]["id"], str(atta["payload"]["coordinates"]))
                 send_message(PAT,event["sender"]["id"], "Coordinates Recieved")
                 loc = False
