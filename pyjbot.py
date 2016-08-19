@@ -153,7 +153,7 @@ def handle_messages():
           if message['status']== "OK":
             for place in message['results']:
               if 'permanently_closed' not in place or place['permanently_closed'] is False:
-                if 'opennow' is in place and place['opennow'] is True
+                if 'opennow' is in place and place['opennow'] is True:
                   restaurant = "Name: "+str(place['name']) +"  Rating: "
                   if 'rating' in place:
                     restaurant+= str(place['rating'])
