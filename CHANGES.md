@@ -7,6 +7,13 @@
 - News filter
 - Praw/reddit module?
 - Help option
+- Google places other requests? Maybe keyword search
+
+#V6.7
+- Added google places api support
+- Added "What restaurants?" request
+- Can recieve and store locaiton data for at least 30 min (?)
+- 
 
 #V6.6
 - Splits up larger messages to fit messenger char limit
