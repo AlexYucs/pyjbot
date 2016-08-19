@@ -316,7 +316,7 @@ def get_restaurants(sender):
   Location = f.read()
   send_message(PAT, sender, str(Location))
   print("finished loc")
-  loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&rankby=distance&keyword=restaurant&key="+str(os.environ.get('GAPI',3))
+  loc_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+Location+"&rankby=distance&type=restaurant&key="+str(os.environ.get('GAPI',3))
   print("url done")
   resp = urllib.urlopen(loc_url)
   print("json read")
